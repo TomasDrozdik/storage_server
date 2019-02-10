@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package proto;
+
+option java_outer_classname = "MessagesProtos";
+
+message ClientRequest {
+    MessageType type = 1;
+    string arg = 2;
+    Socket sock = 3;
+
+    enum MessageType {
+        LS = 0;
+        UP = 1;
+        DOWN = 2;
+    }
+
+    message Socket {
+        string address = 1;
+        string port = 2;
+        string id = 3;
+    }
+}
+
+message ServerResponse {
+    bool ack = 1;
+    repeated string args = 2;
+}
+
